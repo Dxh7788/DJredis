@@ -9,6 +9,11 @@ import redis.clients.jedis.Jedis;
  * @date 2017/12/29 15:45
  */
 public class CommonJedisTest {
+    /**
+     * there are several types of Jedis client's connection.
+     * first.it can use ip or Uri to process connection.
+     * We can use 'localhost' to go a development connection.Others like '192.168.0.109' etc.
+     * */
     @Test
     public void testCon(){
         /**
