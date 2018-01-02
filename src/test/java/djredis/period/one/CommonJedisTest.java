@@ -42,7 +42,7 @@ public class CommonJedisTest {
          *      jedis2.auth("foobared");
          * 2.2  Jedis jedis2 = new Jedis("redis://user:foobared@127.0.0.1:6379/0");
          * */
-        Jedis jedis2 = new Jedis("redis://user:foobared@127.0.0.1:6379/0");
-        jedis2.set("jedis_test_manner4","ceshi4");
+        Jedis jedis0 = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
+        jedis0.set("jedis_test_manner4","ceshi4");
     }
 }
