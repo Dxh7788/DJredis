@@ -43,6 +43,25 @@ public class CommonJedisTest {
          * 2.2  Jedis jedis2 = new Jedis("redis://user:foobared@127.0.0.1:6379/0");
          * */
         Jedis jedis0 = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
-        jedis0.set("jedis_test_manner4","ceshi4");
+        String value = jedis0.set("jedis_test_manner4","ceshi4");
+    }
+    /**
+     *
+     * Redis's afford String,List,ZSet,Hash,HyperLogLog and etc.
+     * set/get is the string commands
+     * set method with whole params,set(String key,String value,String nxxx,String expx,long time)
+     * how to explain set(String key,String value,String nxxx,String expx,long time):
+     * <key,value>:redis key and the value reflect to the key
+     * nxxx:if nxxx equals to 'NX',set the key 'key' with the value 'value' when the key is not exist.if nxxx equals to 'XX' ,Set the key 'key' with value 'value' when the key is exists.
+     * param expx represents the unit that going to be used. case expx= 'EX',the unit is seconds,case expx = 'PX',the unit is milliseconds.
+     * note:NX ,XX,EX,PX is not case-sensitive.You can also use the nx,xx,ex and px.
+     * */
+    @Test
+    public void testRedisStrSet(){
+        Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
+        jedis.set("jedis_test_manner4","ceshi4");
+        jedis.set("jedis_test_manner4","ceshi5","xx");
+        jedis.set("jedis_test_manner4","ceshi6","xx","px",10*1000);
+        System.out.println(jedis.get("jedis_test_manner4"));
     }
 }
