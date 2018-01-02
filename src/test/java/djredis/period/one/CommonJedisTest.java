@@ -55,13 +55,23 @@ public class CommonJedisTest {
      * nxxx:if nxxx equals to 'NX',set the key 'key' with the value 'value' when the key is not exist.if nxxx equals to 'XX' ,Set the key 'key' with value 'value' when the key is exists.
      * param expx represents the unit that going to be used. case expx= 'EX',the unit is seconds,case expx = 'PX',the unit is milliseconds.
      * note:NX ,XX,EX,PX is not case-sensitive.You can also use the nx,xx,ex and px.
+     *
+     * public static enum Command {SET/GET/GETSET/SETRANGE/GETRANGE/SETBIT/GETBIT/STRLEN/INCR/DECR/APPEND/MSET/MGET/MSETNX/MGETNX/PSETEX/SETNX/INCYBY/DECRBY}
+     * String commands includes:set/get/getset/getrange
      * */
     @Test
-    public void testRedisStrSet(){
+    public void testRedisStrSetAndGet(){
         Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
         jedis.set("jedis_test_manner4","ceshi4");
         jedis.set("jedis_test_manner4","ceshi5","xx");
         jedis.set("jedis_test_manner4","ceshi6","xx","px",10*1000);
-        System.out.println(jedis.get("jedis_test_manner4"));
+//        jedis.setbit("jedis_test_manner4",4,"1");
+        jedis.set("jedis_test_manner4_num","10");
+        System.out.println(jedis.strlen("jedis_test_manner4"));
+        System.out.println(jedis.type("jedis_test_manner4_num"));
+        System.out.println(jedis.append("jedis_test_manner4","aaa"));
+        System.out.println(jedis.getrange("jedis_test_manner4",0,-1));
+        System.out.println(jedis.mset(new String[]{"jedis_test_manner4_num","aaa","jedis_test_manner4","bbb"}));
+        System.out.println(jedis.mget(new String[]{"jedis_test_manner4_num","jedis_test_manner4"}));
     }
 }
