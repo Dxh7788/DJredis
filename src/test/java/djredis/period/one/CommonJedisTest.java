@@ -74,4 +74,70 @@ public class CommonJedisTest {
         System.out.println(jedis.mset(new String[]{"jedis_test_manner4_num","aaa","jedis_test_manner4","bbb"}));
         System.out.println(jedis.mget(new String[]{"jedis_test_manner4_num","jedis_test_manner4"}));
     }
+    /**
+     * Redis list commands.
+     * List Commands includes:[lpush/lpushx/lpop/llen/lindex/linsert/lrange/lset/lrem/ltrim]
+     * */
+    @Test
+    public void testRedisList(){
+        Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
+        /*jedis.lpush("list_test_key1","aaa");
+        jedis.lpush("list_test_key1","aab");
+        jedis.lpush("list_test_key1","aac");*/
+        System.out.println(jedis.lindex("list_test_key1",1));
+        System.out.println(jedis.ltrim("list_test_key1",0,0));
+        System.out.println(jedis.llen("list_test_key1"));
+    }
+    /**
+     * Redis Hash Commands
+     * Hash Commands includes:[hset/hget/hmset/hmget/exists/getall/incr/incrByFloat/hkeys/hlen/hscan/hsetnx/hvals/hdel]
+     * */
+    @Test
+    public void testRedisHash(){
+        Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
+        /**
+         * 插入
+         * */
+        /*jedis.hset("hash_test_key1","1","hash1");
+        jedis.hset("hash_test_key1","2","hash2");*/
+        System.out.println(jedis.hget("hash_test_key1","1"));
+        System.out.println(jedis.hmget("hash_test_key1",new String[]{"1","2"}));
+        /*jedis.hdel();
+        jedis.hexists();
+        jedis.hget();
+        jedis.hgetAll();
+        jedis.hincrBy();
+        jedis.hincrByFloat();
+        jedis.hkeys();
+        jedis.hlen();
+        jedis.hmget();
+        jedis.hmset();
+        jedis.hscan();
+        jedis.hset();
+        jedis.hget();
+        jedis.hsetnx();
+        jedis.hvals();*/
+    }
+    @Test
+    public void testRedisZSet(){
+        Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/2");
+        /*jedis.zadd();
+        jedis.zcard();
+        jedis.zcount();
+        jedis.zincrby();
+        jedis.zinterstore();
+        jedis.zlexcount();
+        jedis.zrange();
+        jedis.zrangeByLex();
+        jedis.zrangeByScore();
+        jedis.zrangeByScoreWithScores();
+        jedis.zrank();
+        jedis.zrem();
+        jedis.zremrangeByRank();
+        jedis.zrevrange();
+        jedis.zrevrangeByLex();
+        jedis.zrevrangeByScore();
+        jedis.zrevrangeByScoreWithScores();
+        jedis.zscore();*/
+    }
 }
