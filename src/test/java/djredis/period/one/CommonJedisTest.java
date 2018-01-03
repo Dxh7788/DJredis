@@ -102,6 +102,7 @@ public class CommonJedisTest {
         jedis.hset("hash_test_key1","2","hash2");*/
         System.out.println(jedis.hget("hash_test_key1","1"));
         System.out.println(jedis.hmget("hash_test_key1",new String[]{"1","2"}));
+
         /*jedis.hdel();
         jedis.hexists();
         jedis.hget();
@@ -139,5 +140,15 @@ public class CommonJedisTest {
         jedis.zrevrangeByScore();
         jedis.zrevrangeByScoreWithScores();
         jedis.zscore();*/
+    }
+    @Test
+    public void testRedisConfig(){
+        Jedis jedis = new Jedis("redis://user:foobared@127.0.0.1:6379/3");
+        if ("PONG".equals(jedis.ping())){
+            System.out.println("redis 已连通....,5s后退出");
+            if ("OK".equals(jedis.quit())){
+                System.out.println("redis 已退出....");
+            }
+        }
     }
 }
